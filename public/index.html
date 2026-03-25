@@ -1,62 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Portfolio</title>
+    <meta charset="UTF-8">
+    <title>Lalit Kiran Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <canvas id="binaryCanvas"></canvas>
 
-<header>
-    <h1>☕ Lalit Kiran 🔴</h1>
-    <p>Full Stack Developer | Manchester United Fan</p>
-</header>
+<div class="container">
+    <h1>🚀 Lalit Kiran</h1>
+    <p class="tag">Full Stack Developer | Manchester United Fan 🔴</p>
 
-<section>
-    <h2>About Me</h2>
-    <p>I love coding, coffee, and football ⚽</p>
-</section>
+    <div class="coffee">☕ Coding + Coffee = Magic</div>
 
-<section>
-    <h2>Interests</h2>
-    <ul>
-        <li>☕ Coffee</li>
-        <li>🔴 Manchester United</li>
-        <li>💻 Coding</li>
-    </ul>
-</section>
-<header>
-    <h1 class="logo">☕ Lalit Kiran 🔴</h1>
-    <button id="toggleTheme">🌙</button>
-    <p>Full Stack Developer | Manchester United Fan</p>
-</header>
-
-<!-- Coffee Animation -->
-<div class="coffee">
-    <div class="cup"></div>
-    <div class="steam"></div>
-</div>
-
-<!-- Projects -->
-<section>
-    <h2>Projects</h2>
-    <div class="projects">
-        <div class="card">F1 Pitstop Website</div>
-        <div class="card">Portfolio</div>
-        <div class="card">AI Project</div>
-    </div>
-</section>
-<section>
     <h2>Feedback</h2>
+
     <form id="feedbackForm">
-        <input type="text" placeholder="Name" id="name" required>
-        <input type="email" placeholder="Email" id="email" required>
-        <textarea placeholder="Message" id="message"></textarea>
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <textarea id="message" placeholder="Message"></textarea>
         <button type="submit">Send</button>
     </form>
-</section>
+</div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
