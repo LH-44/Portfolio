@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Feedback = require("./feedback");
+const Feedback = require("./models/feedback");
 require("dotenv").config();
 
 const app = express();
