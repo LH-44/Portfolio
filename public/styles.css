@@ -1,57 +1,91 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     background: black;
     color: white;
     overflow: hidden;
 }
 
+/* FULLSCREEN BINARY BACKGROUND */
 #binaryCanvas {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
 }
 
+/* GLASS CARD */
 .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+
     text-align: center;
-    margin-top: 80px;
+    width: 350px;
+
+    animation: fadeIn 1.5s ease-in-out;
 }
 
+/* TITLE */
 h1 {
     color: red;
-    font-size: 40px;
-    text-shadow: 0 0 10px red;
+    font-size: 36px;
+    text-shadow: 0 0 15px red;
 }
 
+/* TAGLINE */
 .tag {
     margin-bottom: 20px;
+    opacity: 0.8;
 }
 
+/* COFFEE TEXT */
 .coffee {
-    margin: 20px;
+    margin: 15px 0;
     font-size: 18px;
     color: #c69c6d;
+    transition: 0.3s;
 }
 
+.coffee:hover {
+    transform: scale(1.1);
+}
+
+/* FORM */
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* INPUT FIELDS */
 input, textarea {
     margin: 10px;
-    padding: 10px;
-    width: 250px;
+    padding: 12px;
+    width: 90%;
+    border-radius: 10px;
     border: none;
-    border-radius: 5px;
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
+/* BUTTON */
 button {
-    padding: 10px 20px;
+    padding: 12px 20px;
     background: red;
     border: none;
+    border-radius: 10px;
     color: white;
     cursor: pointer;
     transition: 0.3s;
@@ -59,4 +93,18 @@ button {
 
 button:hover {
     background: darkred;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px red;
+}
+
+/* FADE ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
 }

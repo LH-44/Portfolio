@@ -2,30 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lalit Kiran Portfolio</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+<!-- 💻 Binary Background -->
 <canvas id="binaryCanvas"></canvas>
 
+<!-- 🔥 MAIN GLASS CONTAINER -->
 <div class="container">
-    <h1>🚀 Lalit Kiran</h1>
-    <p class="tag">Full Stack Developer | Manchester United Fan 🔴</p>
 
-    <div class="coffee">☕ Coding + Coffee = Magic</div>
+    <!-- ⚽ HEADER -->
+    <div class="header">
+        <h1>🚀 Lalit Kiran</h1>
+        <p class="tag">Full Stack Developer | Manchester United Fan 🔴</p>
+    </div>
 
-    <h2>Feedback</h2>
+    <!-- ☕ COFFEE VIBE -->
+    <div class="coffee">
+        ☕ Coding + Coffee = Magic
+    </div>
 
-    <form id="feedbackForm">
-        <input type="text" id="name" placeholder="Name" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <textarea id="message" placeholder="Message"></textarea>
-        <button type="submit">Send</button>
-    </form>
+    <!-- 📩 FEEDBACK SECTION -->
+    <div class="feedback-section">
+        <h2>Feedback</h2>
+
+        <form id="feedbackForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message"></textarea>
+
+            <button type="submit">Send Feedback 🚀</button>
+        </form>
+    </div>
+
 </div>
 
+<!-- ⚡ FOOTER -->
+<div class="footer">
+    <p>⚽ Glory Glory Man United 🔴 | ☕ Built with Passion</p>
+</div>
+
+<!-- JS -->
 <script src="script.js"></script>
 
 </body>
