@@ -6,12 +6,12 @@ const cors = require("cors");
 
 const app = express();
 
-// Middleware
+// ✅ Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public"))); // serve frontend
 
-// PostgreSQL connection (Railway)
+// ✅ PostgreSQL (Railway)
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -19,7 +19,7 @@ const pool = new Pool({
     }
 });
 
-// Create table safely
+// ✅ Create table safely
 (async () => {
     try {
         await pool.query(`
@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// ✅ TEST ROUTE (for debugging)
+// ✅ TEST ROUTE
 app.get("/test", (req, res) => {
     res.send("Working!");
 });
