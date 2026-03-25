@@ -1,58 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lalit Kiran Portfolio</title>
+  <meta charset="UTF-8">
+  <title>Lalit Kiran Portfolio</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: black;
+      overflow-x: hidden;
+    }
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .container {
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    .card {
+      background: rgba(0,0,0,0.7);
+      padding: 30px;
+      margin: 40px auto;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px red;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: darkred;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- 💻 Binary Background -->
-<canvas id="binaryCanvas"></canvas>
+<canvas id="matrix"></canvas>
 
-<!-- 🔥 MAIN GLASS CONTAINER -->
 <div class="container">
+  <h1>🚀 Lalit Kiran</h1>
+  <p>Full Stack Developer | Manchester United Fan 🔴</p>
 
-    <!-- ⚽ HEADER -->
-    <div class="header">
-        <h1>🚀 Lalit Kiran</h1>
-        <p class="tag">Full Stack Developer | Manchester United Fan 🔴</p>
-    </div>
+  <div class="card">
+    <h2>Feedback</h2>
 
-    <!-- ☕ COFFEE VIBE -->
-    <div class="coffee">
-        ☕ Coding + Coffee = Magic
-    </div>
+    <form action="/feedback" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Feedback 🚀</button>
+    </form>
 
-    <!-- 📩 FEEDBACK SECTION -->
-    <div class="feedback-section">
-        <h2>Feedback</h2>
-
-        <form id="feedbackForm">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="message" placeholder="Your Message"></textarea>
-
-            <button type="submit">Send Feedback 🚀</button>
-        </form>
-    </div>
-
+  </div>
 </div>
 
-<!-- ⚡ FOOTER -->
-<div class="footer">
-    <p>⚽ Glory Glory Man United 🔴 | ☕ Built with Passion</p>
-</div>
+<script>
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
 
-<!-- JS -->
-<script src="script.js"></script>
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const letters = "01";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "red";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+        drops[i] = 0;
+
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 33);
+</script>
 
 </body>
 </html>
