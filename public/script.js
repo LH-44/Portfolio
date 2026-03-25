@@ -62,27 +62,23 @@ const skillsChart = new Chart(ctxPie, {
             'JavaScript',
             'Node.js',
             'MongoDB',
-            'Git & GitHub'
+            'Git'
         ],
         datasets: [{
             data: [20, 15, 25, 15, 15, 10],
             backgroundColor: [
-                '#e34c26',  // HTML
-                '#264de4',  // CSS
-                '#f0db4f',  // JS
-                '#68a063',  // Node
-                '#4db33d',  // MongoDB
-                '#333333'   // Git
+                '#e34c26',
+                '#264de4',
+                '#f0db4f',
+                '#68a063',
+                '#4db33d',
+                '#333333'
             ],
-            borderWidth: 1
-
-            hoverOff    set: 10
+            borderWidth: 1,
+            hoverOffset: 10
         }]
     },
     options: {
-        animation: {
-    animateScale: true
-        }   
         plugins: {
             legend: {
                 labels: {
