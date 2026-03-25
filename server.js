@@ -47,4 +47,7 @@ app.get("/admin/feedback", async (req, res) => {
 
 // ✅ Start server (ALWAYS KEEP THIS AT BOTTOM)
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running"));
+
+app.listen(PORT, () => {
+    console.log("Server running on port", PORT);
+});
