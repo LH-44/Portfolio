@@ -2,56 +2,81 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { Pool } = require("pg");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
 
+// Middleware
+app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public")); // serves index.html, admin.html
+app.use(express.static("public"));
 
-// Database connection
+// PostgreSQL connection (Railway)
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
-// ✅ Create table
-pool.query(`
-CREATE TABLE IF NOT EXISTS feedback (
-    id SERIAL PRIMARY KEY,
-    name TEXT,
-    email TEXT,
-    message TEXT
-);
-`);
+// Create table safely
+(async () => {
+    try {
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS feedback (
+                id SERIAL PRIMARY KEY,
+                name TEXT,
+                email TEXT,
+                message TEXT
+            );
+        `);
+        console.log("Table ready");
+    } catch (err) {
+        console.error("DB Error:", err);
+    }
+})();
 
+// ✅ ROOT ROUTE (IMPORTANT)
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
-// ✅ FEEDBACK ROUTE (already exists)
+// ✅ TEST ROUTE (for debugging)
+app.get("/test", (req, res) => {
+    res.send("Working!");
+});
+
+// ✅ FEEDBACK API
 app.post("/feedback", async (req, res) => {
-    const { name, email, message } = req.body;
+    try {
+        const { name, email, message } = req.body;
 
-    await pool.query(
-        "INSERT INTO feedback (name, email, message) VALUES ($1,$2,$3)",
-        [name, email, message]
-    );
+        await pool.query(
+            "INSERT INTO feedback (name, email, message) VALUES ($1,$2,$3)",
+            [name, email, message]
+        );
 
-    res.send("Saved!");
+        res.send("Saved!");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error saving feedback");
+    }
 });
 
-
-// ✅ 👉 ADD ADMIN ROUTE RIGHT HERE 👇
+// ✅ ADMIN ROUTE
 app.get("/admin/feedback", async (req, res) => {
-    const result = await pool.query("SELECT * FROM feedback");
-    res.json(result.rows);
+    try {
+        const result = await pool.query("SELECT * FROM feedback");
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error fetching feedback");
+    }
 });
 
-
-// ✅ Start server (ALWAYS KEEP THIS AT BOTTOM)
+// ✅ START SERVER (ALWAYS LAST)
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log("Server running on port", PORT);
-});
-
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
 });
