@@ -8,47 +8,39 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: #0d0d0d;
       color: white;
-      background: black;
-      overflow-x: hidden;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    .container {
       text-align: center;
-      padding: 60px 20px;
+    }
+
+    header {
+      padding: 40px;
+      background: black;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
 
-    .section {
-      margin-top: 50px;
+    section {
+      padding: 40px 20px;
     }
 
     .card {
-      background: rgba(0,0,0,0.7);
+      background: #1a1a1a;
       padding: 20px;
       margin: 20px auto;
-      width: 90%;
-      max-width: 600px;
+      width: 80%;
       border-radius: 10px;
-      box-shadow: 0 0 15px red;
+      box-shadow: 0 0 10px rgba(255,0,0,0.3);
     }
 
     input, textarea {
-      width: 100%;
+      width: 80%;
       padding: 10px;
-      margin: 10px 0;
-      border: none;
+      margin: 10px;
       border-radius: 5px;
+      border: none;
     }
 
     button {
@@ -60,124 +52,102 @@
       cursor: pointer;
     }
 
+    button:hover {
+      background: darkred;
+    }
+
     a {
-      color: #ff4d4d;
+      color: red;
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
+    footer {
+      padding: 20px;
+      background: black;
+      margin-top: 40px;
     }
   </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-
-<div class="container">
-
   <!-- HEADER -->
-  <h1>🚀 Lalit Kiran</h1>
-  <p>Full Stack Developer | Manchester United Fan 🔴</p>
-  <p>☕ Coding + Coffee = Magic</p>
+  <header>
+    <h1>🚀 Lalit Kiran</h1>
+    <p>Full Stack Developer | Manchester United Fan 🔴</p>
+  </header>
+
+  <!-- ABOUT -->
+  <section>
+    <h2>About Me</h2>
+    <div class="card">
+      <p>
+        I am a passionate Full Stack Developer skilled in building modern web applications.
+        I enjoy working with Node.js, databases, and deploying real-world projects.
+      </p>
+    </div>
+  </section>
 
   <!-- PROJECTS -->
-  <div class="section">
-    <h2>💼 Projects</h2>
+  <section>
+    <h2>Projects</h2>
 
     <div class="card">
-      <h3>F1 Pitstop Website</h3>
-      <p>A Formula 1 themed webpage which shows the drivers for the Formula 1 2026 Season.
-        It also shows which team that driver is driving for along woth their achievements.
-      </p>
+      <h3>💻 Portfolio Website</h3>
+      <p>A personal portfolio with feedback system using Node.js + PostgreSQL.</p>
     </div>
 
     <div class="card">
-      <h3> Spidey Portfolio </h3>
-      <p>A portfolio Website which talks about me and my interests and takes feedback from people about how they feel about my portfolio</p>
+      <h3>🏎 F1 Pitstop Website</h3>
+      <p>Interactive Formula 1 themed site with UI animations.</p>
     </div>
 
-    <div class="card">
-      <h3>Man United Treble Page</h3>
-      <p>A webpage that shows the legendary treble winning team of 1999-2000 led by Sir Alex Ferguson.
-        It shows the timeline in which the team won that particular trophy along with that iconic Champions League winning final team.
-      </p>
-    </div>
-  </div>
+  </section>
 
   <!-- INTERESTS -->
-  <div class="section">
-    <h2>🎯 Interests</h2>
-
+  <section>
+    <h2>Interests</h2>
     <div class="card">
-      <p>⚽ Football (Manchester United 🔴)</p>
-      <p>💻 Web Development</p>
-      <p>🤖 AI & Tech</p>
-      <p>🏎️ Formula 1</p>
+      <p>⚽ Football (Manchester United)</p>
+      <p>💻 Coding & Web Development</p>
+      <p>🚀 Building Projects</p>
     </div>
-  </div>
+  </section>
 
   <!-- CONTACT -->
-  <div class="section">
-    <h2>📬 Contact Me</h2>
-
+  <section>
+    <h2>Connect With Me</h2>
     <div class="card">
-      <p>📧 Email: <a href="lalit.kiran10@gmail.com">lalit.kiran10@gmail.com</a></p>
-      <p>💻 GitHub: <a href="https://github.com/LH-44" target="_blank">github.com/LH-44</a></p>
-      <p>🔗 LinkedIn: <a href="https://linkedin.com/in/your-linkedin" target="_blank">linkedin</a></p>
+      <p>📧 Email: lalitkiran45@gmail.com</p>
+      <p>💼 LinkedIn: <a href="#">Add Your Link</a></p>
+      <p>💻 GitHub: <a href="https://github.com/LH-44" target="_blank">LH-44</a></p>
     </div>
-  </div>
+  </section>
 
-  <!-- FEEDBACK -->
-  <div class="section">
-    <h2>📝 Feedback</h2>
+  <!-- FEEDBACK FORM -->
+  <section>
+    <h2>Feedback</h2>
 
     <div class="card">
-      <form action="/feedback" method="POST">
+      <form action="https://pandas.up.railway.app/feedback" method="POST">
+        
         <input type="text" name="name" placeholder="Your Name" required>
+        
         <input type="email" name="email" placeholder="Your Email" required>
+        
         <textarea name="message" placeholder="Your Message" required></textarea>
+        
+        <br>
         <button type="submit">Send Feedback 🚀</button>
       </form>
     </div>
-  </div>
 
-</div>
+  </section>
 
-<script>
-  const canvas = document.getElementById("matrix");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const letters = "01";
-  const fontSize = 14;
-  const columns = canvas.width / fontSize;
-
-  const drops = Array(Math.floor(columns)).fill(1);
-
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "red";
-    ctx.font = fontSize + "px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters[Math.floor(Math.random() * letters.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-        drops[i] = 0;
-
-      drops[i]++;
-    }
-  }
-
-  setInterval(draw, 33);
-</script>
+  <!-- FOOTER -->
+  <footer>
+    <p>⚽ Glory Glory Man United 🔴 | Built with Passion</p>
+  </footer>
 
 </body>
 </html>
